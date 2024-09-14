@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+<h1 align="center">
+  <img alt="in.orbit logo" title="InOrbit Logo" src="public/logo.svg" width="250px" />
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of the InOrbit application, developed with React and TypeScript, using Vite for the build tool.
 
-Currently, two official plugins are available:
+## About 🎯
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The inorbit-ui is responsible for providing the user interface for the InOrbit application with an intuitive and responsive web application.
 
-## Expanding the ESLint configuration
+## Technologies 💻
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://reactjs.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Vite](https://vitejs.dev)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Zod](https://zod.dev)
+- [Radix-ui](https://www.radix-ui.com/)
 
-- Configure the top-level `parserOptions` property like this:
+## Installation 🛠
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Follow the steps below to set up and run the project locally.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Steps
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/MateusFS99/inorbit-ui.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd inorbit-ui
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the server:
+   ```bash
+   npm run dev
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## License ®️
+
+This project is under the MIT license. Consult the [LICENSE](LICENSE) for details.
