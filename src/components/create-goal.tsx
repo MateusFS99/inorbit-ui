@@ -16,9 +16,9 @@ import { Label } from "./ui/label";
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createGoal } from "../services/create-goal";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
+import { createGoal } from "../services/goal-service";
 
 const createGoalSchema = z.object({
   title: z.string().min(1, "Informe a atividade que deseja praticar"),

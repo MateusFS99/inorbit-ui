@@ -1,8 +1,14 @@
+import type {
+  CreateGoalRequest,
+  GetPendingGoalsResponse,
+} from "../models/interfaces/goal";
 import * as api from "./api";
 
-export interface CreateGoalRequest {
-  title: string;
-  desiredWeeklyFrequency: number;
+export async function getPendingGoals(): Promise<GetPendingGoalsResponse> {
+  const response = await api.get("pending-goals");
+  const data = await response.json();
+
+  return data;
 }
 
 export async function createGoal({

@@ -2,7 +2,7 @@ import { Dialog } from "@radix-ui/react-dialog";
 import { CreateGoal } from "./components/create-goal";
 import { WeeklySummary } from "./components/weekly-summary";
 import { useQuery } from "@tanstack/react-query";
-import { getSummary } from "./services/get-summary";
+import { getSummary } from "./services/summary-service";
 import { Loader2 } from "lucide-react";
 import { EmptyGoals } from "./components/empty-goals";
 

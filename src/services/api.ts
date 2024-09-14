@@ -13,3 +13,13 @@ export async function post(url: string, { ...params }) {
     body: JSON.stringify(params),
   });
 }
+
+export async function remove(url: string, { ...params }) {
+  return await fetch(`${baseUrl}/${url}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params),
+  });
+}

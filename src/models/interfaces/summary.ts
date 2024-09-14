@@ -1,5 +1,3 @@
-import * as api from "./api";
-
 export interface GetSummaryResponse {
   summary: {
     completed: number;
@@ -13,11 +11,4 @@ export interface GetSummaryResponse {
       }[]
     >;
   };
-}
-
-export async function getSummary(): Promise<GetSummaryResponse> {
-  const response = await api.get("summary");
-  const data = await response.json();
-
-  return data;
 }
