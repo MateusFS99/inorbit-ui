@@ -4,10 +4,12 @@ import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
 import { Progress, ProgressIndicator } from "./ui/progress-bar";
 import { Separator } from "./ui/separator";
-import type { GetSummaryResponse } from "../services/get-summary";
 import dayjs from "dayjs";
 import ptBR from "dayjs/locale/pt-BR";
 import { PendingGoals } from "./pending-goals";
+import { deleteGoalCompletion } from "../services/completion-service";
+import { useQueryClient } from "@tanstack/react-query";
+import type { GetSummaryResponse } from "../models/interfaces/summary";
 
 dayjs.locale(ptBR);
 
@@ -19,9 +21,18 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
   const fromDate = dayjs().startOf("week").format("D[ de ]MMMM");
   const toDate = dayjs().endOf("week").format("D[ de ]MMMM");
 
+  const queryClient = useQueryClient();
+
   const completedPercentage = Math.round(
     (summary.completed * 100) / summary.total
   );
+
+  const handleDeleteGoalCompletion = async (completionId: string) => {
+    await deleteGoalCompletion({ completionId });
+
+    queryClient.invalidateQueries({ queryKey: ["summary"] });
+    queryClient.invalidateQueries({ queryKey: ["pending-goals"] });
+  };
 
   return (
     <main className="max-w-[540px] py-10 px-5 mx-auto flex flex-col gap-6">
@@ -82,11 +93,20 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
                   return (
                     <li className="flex items-center gap-2" key={goal.id}>
                       <CheckCircle2 className="size-4 text-pink-500" />
+
                       <span className="text-sm text-zinc-400">
                         Você completou "
                         <span className="text-zinc-100">{goal.title}</span>" às{" "}
                         <span className="text-zinc-100">{parsedTime}</span>
                       </span>
+
+                      <button
+                        type="button"
+                        className="text-xs text-zinc-500 underline hover:text-zinc-300"
+                        onClick={() => handleDeleteGoalCompletion(goal.id)}
+                      >
+                        Desfazer
+                      </button>
                     </li>
                   );
                 })}
